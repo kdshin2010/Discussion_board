@@ -1,0 +1,11 @@
+<div  style='width: 30%; margin-top: 10%; margin: 0 auto;' > 
+<h1>{{vm.newUser}}</h1>
+  <form class="form-signin" ng-submit='vm.register()'>
+          <h2 class="form-signin-heading">Please Sign Up</h2>
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input type="text" class="form-control" placeholder="Email address" ng-model='vm.newUser.username' >
+<!--           <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" class="form-control" placeholder="Password" ng-model='vm.newUser.password' > -->
+          <button class="btn btn-lg btn-primary btn-block" type="submit" style='margin-top: 10px;'>Sign Up</button>
+        </form>
+</div>

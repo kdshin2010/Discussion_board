@@ -1,0 +1,19 @@
+{
+  "name": "new_app",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.10.1",
+    "cookie-parser": "^1.3.5",
+    "debug": "^2.0.0",
+    "ejs": "1.0.0",
+    "express": "^4.10.0",
+    "express-session": "^1.11.2",
+    "morgan": "^1.3.2",
+    "mongoose": "^4.0.1",
+    "mongoose-validator": "^1.2.4",
+    "passport": "^0.2.1",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^1.0.0",
+    "serve-favicon": "^2.1.7"
+  }
+}

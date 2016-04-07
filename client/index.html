@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- Optional them -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="content/style.css">
+	<met charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+	<ks-navbar></ks-navbar>
+	<div ng-view=""></div>
+
+
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.4/angular-route.js"></script>
+<!-- FIX -->
+<!--	why constant module doest inject propertly -->
+
+
+
+
+	<!-- Constants -->
+
+<!-- 	<script src='app/constants/constants.module.js'></script>
+ --><!-- 	<script src='app/constants/auth.service.js'></script>
+<!--  -->	<!-- <script src='app/constants/posts.service.js'></script>
+ --> -->
+
+
+	<script src='app/app.module.js'></script>
+	<script src="app/posts/posts.module.js"></script>
+	<script src="app/posts/config.routes.js"></script>
+	<script src="app/posts/posts.service.js"></script>
+	<script src="app/posts/posts.controller.js"></script>
+
+
+
+			<!--Layout -->	
+	<script src="app/layout/layout.module.js"></script>
+	<script src="app/layout/navbar.directive.js"></script>
+
+
+
+
+    <!-- Auth -->
+
+
+	<script src='app/auth/auth.module.js'></script>
+	<script src='app/auth/config.routes.js'></script>
+	<script src='app/auth/auth.controller.js'></script>
+	<script src='app/auth/auth.service.js'></script>
+
+
+
+
+
+	<script src="app/view_post/single_post.module.js"></script>
+	<script src="app/view_post/config.routes.js"></script>
+	<script src="app/view_post/single_post.controller.js"></script>
+
+
+
+</body>
+</html>
