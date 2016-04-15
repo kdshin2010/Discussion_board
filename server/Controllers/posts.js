@@ -22,16 +22,16 @@ posts.answer = function(req, res) {
 		if(err) {
 			console.log('errror funding the post!')
 		} else {
-			var answer = new Answer({answer: req.body.answer, _owner: req.body.owner})
+			var answer = new Answer({ _owner: req.body.owner, answer: req.body.answer, })//})
 			answer._post = result._id
 			result.answers.push(answer)
 			result.save(function(err) {
 				if(err) {
-					console.log('error saving post.answers array')
+					console.log(err)
 				} else {
 					answer.save(function(err) {
 						if(err) {
-							console.log('error saving answer')
+							console.log(err)
 						} else {
 							console.log('successfully savied answer!')
 						}
@@ -41,7 +41,6 @@ posts.answer = function(req, res) {
 		}
 	})
 }
-
 
 posts.show = function(req, res) {
 	Post.find()

@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var Answer = new mongoose.Schema({
 	answer: String,
 	_post: {type: ObjectId, ref:'Post'},
-	_owner: String,
+	_owner: {type: String, ref: 'Users'},
 	points: Number,
 	date_created: Date
 })

@@ -50,12 +50,12 @@
 
 			function Answer(info) {
 				console.log(info)
-				console.log('here is the data from passed from the controller ')
-				console.log(user)
-				console.log('above is the user info')
-				if(user === undefined) {
+				console.log(info.answer)
+				console.log("hellhweala")
+				if(user = undefined) {
 					alert('Can Not post, user is undefined')
 				} else {
+					console.log('about to send HTTP')
 					var deferred = $q.defer()
 					$http.post('/answer', {id: info.id, answer: info.answer, owner: info._owner })
 					.success(function() {

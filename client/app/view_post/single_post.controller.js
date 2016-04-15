@@ -18,7 +18,6 @@
 			vm.user = AuthFactory.sendUserInfo();
 			vm.answers;
 			getPosts();
-			setTimeout(function() {console.log(vm.user)}, 3000)
 			vm.Answer = Answer
 
 			function getPosts() {
@@ -33,9 +32,12 @@
 			}
 
 			//change this is to store in the database
-			function Answer(id) {
-				console.log(vm.user)
-				PostsFactory.answer({id: id, answer: vm.newAnswer, _owner: vm.user}) 
+			//this works allowing us to pass post and index
+			function Answer(id , index) {
+				console.log(vm.newAnswer)
+				console.log(vm.newAnswer[index])
+				console.log('why did not you think of this before?????????')
+				PostsFactory.answer({id: id, answer: vm.newAnswer[index], _owner: vm.user}) 
 					.then(function(){
 						console.log('successfully added post')
 					})
