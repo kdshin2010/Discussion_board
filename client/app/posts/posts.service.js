@@ -49,14 +49,17 @@
 			}
 
 			function Answer(info) {
+				console.log(info)
+				console.log('here is the data from passed from the controller ')
+				console.log(user)
+				console.log('above is the user info')
 				if(user === undefined) {
 					alert('Can Not post, user is undefined')
 				} else {
 					var deferred = $q.defer()
-					console.log(info.answer)
-					$http.post('/answer', {id: info.id, answer: info.answer, owner: user })
+					$http.post('/answer', {id: info.id, answer: info.answer, owner: info._owner })
 					.success(function() {
-						console.log('successfully added answer to post')
+						console.log('success Answering to post')
 						deferred.resolve()
 					})
 					.error(function() {
@@ -66,7 +69,7 @@
 					return deferred.promise
 				}
 			} 
-
+			
 			function getAnswers() {
 				console.log('send an API request to get answers')
 				// var deferred = $q.defer()

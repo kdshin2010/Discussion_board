@@ -18,6 +18,7 @@
 			vm.user = AuthFactory.sendUserInfo();
 			vm.answers;
 			getPosts();
+			setTimeout(function() {console.log(vm.user)}, 3000)
 			vm.Answer = Answer
 
 			function getPosts() {
@@ -33,7 +34,8 @@
 
 			//change this is to store in the database
 			function Answer(id) {
-				PostsFactory.answer({id: id, answer: vm.newAnswer}) 
+				console.log(vm.user)
+				PostsFactory.answer({id: id, answer: vm.newAnswer, _owner: vm.user}) 
 					.then(function(){
 						console.log('successfully added post')
 					})

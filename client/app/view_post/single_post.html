@@ -19,7 +19,7 @@ h3 {
 	width: 30%;
 	height: 10%;
 	border: solid;
-	overflow: hidden;
+	overflow: scroll;
 
 }
 .container {
@@ -47,13 +47,13 @@ h3 {
 }
 </style>
 
-	<h3>Hello {{vm.user}}</h3>
 	<div class="container-fluid" id='single_post_container' ng-repeat='post in vm.posts' style='border: solid'>
 		<div class="row">
 		<div class = 'container'>
 			<div class='single_post'>
+				HEY {{vm.user}}
 				<h3>Topic: {{post.topic}}</h3>
-				<h5>Posted By: {{post.owner}}</h5>
+				<h5>Posted By: {{post.owner}} </h5>
 				<p>Description: {{post.description}}</p>
 				<form class="form-horizontal">
 			  <div class="form-group">
@@ -69,5 +69,6 @@ h3 {
 		 <div class='answer_container' ng-repeat = 'answer in post.answers track by $index | orderBy '>
 		 	<h5><strong>{{answer._owner}}</strong>: <em> {{answer.answer}}</em></h5>
 		 </div>
+		 place the answer box here
 		</div>
 	</div>

@@ -14,19 +14,10 @@ posts.create = function(req, res) {
 	})
 
 }
-// posts.show = function(req, res) {
-// 	Post.find({}, function(err, posts) {
-// 		if(err) {
-// 			console.log('error finding post')
-// 		} else {
-// 			res.json(posts)
-// 		}
-// 	})
-// }
 
 posts.answer = function(req, res) {
-	console.log(req.body)
-	console.log('the above is req.body')
+	console.log(req.body);
+	console.log('id' + req.body.id)
 	Post.findOne({_id: req.body.id}, function(err, result) {
 		if(err) {
 			console.log('errror funding the post!')
@@ -47,10 +38,10 @@ posts.answer = function(req, res) {
 					})
 				}
 			})
-
 		}
 	})
 }
+
 
 posts.show = function(req, res) {
 	Post.find()
@@ -59,7 +50,6 @@ posts.show = function(req, res) {
 		if(err) {
 			console.log('error finding story')
 		} else {
-			console.log(result)
 			res.json(result)
 		}
 	})
