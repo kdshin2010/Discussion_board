@@ -3,13 +3,6 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 	ObjectId = Schema.ObjectId;
 
-var Answer = new mongoose.Schema({
-	answer: String,
-	_post: {type: ObjectId, ref:'Post'},
-	_owner: {type: String, ref: 'Users'},
-	points: Number,
-	date_created: Date
-})
 
 var Comment = new mongoose.Schema({
 	comment: String,
@@ -19,5 +12,4 @@ var Comment = new mongoose.Schema({
 	date_created: Date
 })
 
-
-module.exports = mongoose.model('Answer', Answer)
+module.exports = mongoose.model('Comment', Comment);

@@ -16,7 +16,7 @@ h3 {
 
 #single_post_container {
 	margin: 2% auto;
-	width: 30%;
+	width: 50%;
 	height: 10%;
 	border: solid;
 	overflow: scroll;
@@ -31,7 +31,15 @@ h3 {
 
 .form-group {
 	width: 35%;
+	margin-bottom: 10px;
+	margin-left: 2%;
 }
+.comment {
+	width: 25%;
+	height: 10px%;
+	font-size: 12px;
+}
+
 
 .col-xs-6 {
 	margin: 10px;
@@ -43,15 +51,22 @@ h3 {
 .single_post {
 	margin-top: 3%;
 	width: 100%;
-	max-height: 30%;
+	/*max-height: 30%; */
 }
+.comment_input {
+	width: 100px;
+	height: 18px;
+}
+.add_comment {
+	height: 18px;
+}
+
 </style>
 
 	<div class="container-fluid" id='single_post_container' ng-repeat='post in vm.posts' style='border: solid'>
 		<div class="row">
 		<div class = 'container'>
 			<div class='single_post'>
-				HEY {{vm.user}}
 				<h3>Topic: {{post.topic}}</h3>
 				<h5>Posted By: {{post.owner}} </h5>
 				<p>Description: {{post.description}}</p>
@@ -60,16 +75,22 @@ h3 {
 			    <label for="inputEmail3" class="col-sm-2 control-label">Answer</label>
 			    <div class="col-sm-10">
 					<textarea class="form-control" rows="3" ng-model='vm.newAnswer[$index]'></textarea>
-			    <button class='btn btn-primary' ng-click = 'vm.Answer(post._id, $index)' style='float:right'>Submit</button>
+			    <button class='btn btn-primary' ng-click = 'vm.Answer(post._id, $index)' style='float:right'></button>
 			    </div>
 			 </form>
 		 </div>
 		 <em>Answers</em>
 		 <!-- Make API Call to get answers into the container change varialbe -->
-		 <div class='answer_container' ng-repeat = 'answer in post.answers track by $index | orderBy '>
-		 {{answer}}
-		 	<h5><strong>{{answer._owner}}</strong>: <em> {{answer.answer}}</em></h5>
+		 <div class='answer_container' ng-repeat = 'answer in post.answers track by $index'>
+		 	<h5><strong>{{answer._owner}}</strong>: <em> {{answer.answer}} ID</em></h5>
+		 		<div class='replies' style='margin-left: 20px;'>
+		 			<div ng-repeat='comment in answer.comments'>
+		 				{{comment.comment}}
+		 			</div>
+		 			<input class='Reply' ng-model='vm.newComment'>
+		 			<input type='submit' ng-click = 'vm.Reply(answer._id)'> 
+		 		</div>
+		 
 		 </div>
-		 place the answer box here
-		</div>
 	</div>
+

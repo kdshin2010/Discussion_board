@@ -11,6 +11,9 @@
 				addPost: addPost,
 				getPosts: getPosts,
 				answer: Answer,
+				// getAnswers: getAnswers,
+				reply: reply,
+				getComments: getComments,
 				getAnswers: getAnswers
 			}
 
@@ -34,12 +37,21 @@
 				return deferred.promise
 			}
 
-			function getPosts() {
+			function getAnswers() {
 				var deferred = $q.defer()
 				$http.get('/getPosts')
 				.success(function(data) {
-					console.log(data)
-					console.log('in the service')
+					deferred.resolve(data)
+				})
+				.error(function() {
+					console.log('could not get posts')
+				})
+			}
+
+			function getPosts() {
+				var deferred = $q.defer()
+				$http.get('/getAnswers')
+				.success(function(data) {
 					deferred.resolve(data)
 				})
 				.error(function() {
@@ -49,13 +61,10 @@
 			}
 
 			function Answer(info) {
-				console.log(info)
-				console.log(info.answer)
-				console.log("hellhweala")
+
 				if(user = undefined) {
 					alert('Can Not post, user is undefined')
 				} else {
-					console.log('about to send HTTP')
 					var deferred = $q.defer()
 					$http.post('/answer', {id: info.id, answer: info.answer, owner: info._owner })
 					.success(function() {
@@ -66,25 +75,37 @@
 						console.log('could not add post to data')
 						deferred.reject()
 					})
-					return deferred.promise
+					return deferred.promise;
 				}
 			} 
-			
-			function getAnswers() {
-				console.log('send an API request to get answers')
-				// var deferred = $q.defer()
-				// $http.get('/getAnswers')
-				// .success(function(data){
-				// 	deferred.resolve(data)
-				// })
-				// .error(function(error) {
-				// 	deferred.reject(error)
-				// })
-				// return deferred.promise
 
+			function reply(info) {
+				var deferred = $q.defer()
+				$http.post('/reply', {id: info.id, comment: info.comment, owner: info._owner})
+				.success(function() {
+					console.log('sucess replying to comment')
+					deferred.resolve()
+				})
+				.error(function() {
+					console.log('error replying to comment')
+					deferred.reject()
+				})
+				return deferred.promise
 			}
 
+			function getComments() {
+				var deferred = $q.defer()
+				$http.get('/getComments')
+				.success(function(data) {
+					deferred.resolve(data)
+				})
+				.error(function(){
+					deferred.reject();
+				})
+				return deferred.promise
+			}
 		}
+		
 
 
 })()

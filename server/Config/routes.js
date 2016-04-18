@@ -43,7 +43,6 @@ var express = require('express'),
 
 
 routes.post('/user/register', function(req, res) {
-	console.log('here at the routes');
 	users.register(req, res)
 })
 
@@ -72,12 +71,22 @@ routes.post('/answer', function(req, res) {
 })
 
 routes.get('/getAnswers', function(req, res) {
-  posts.showAnswer(req, res)
+  posts.show(req,res)
 })
 
 routes.post('/findAnswer', function(req, res) {
   posts.findAnswer(req, res)
 })
+
+routes.post('/reply', function(req, res) {
+  posts.reply(req,res)
+})
+
+routes.get('/getComments', function(req, res) {
+  posts.showComments(req, res)
+})
+
+
 
 
 

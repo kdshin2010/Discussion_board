@@ -14,29 +14,50 @@
 
 			var thisPostId = $routeParams.id
 			vm.test = 'hello';
-			vm.posts;
 			vm.user = AuthFactory.sendUserInfo();
 			vm.answers;
+			vm.Reply = Reply
 			getPosts();
-			vm.Answer = Answer
+			vm.Answer = Answer;
+			vm.comments;
+			getComments();
+			vm.replies
+
+			// var forEach = function (array, callback) {
+			// 	for(var i=0; i<array.length; i++) {
+			// 		callback(array[i])
+			// 	}
+			// }
+
+			// var getid = function(arg) {
+			// 	return arg._id
+			// }
+
+			// var getAnswers = function(arg) {
+			// 	return arg.answers
+			// }
+
+			// var map = function(collection, callback) {
+			// 	var newArray = []
+			// 	forEach(collection, function(arg) {
+			// 		newArray.push(callback(arg))
+			// 	})
+			// 	return newArray
+			// }
 
 			function getPosts() {
 				PostsFactory.getPosts()
 				.then(function(data) {
 					console.log(data)
+					console.log('getting POSTS')
 					vm.posts = data
 				})
 				.catch(function(){
-					console.log('in the single psot controller and  could not get posts')
+					console.log('in the single psot controller and could not get posts')
 				})
 			}
 
-			//change this is to store in the database
-			//this works allowing us to pass post and index
 			function Answer(id , index) {
-				console.log(vm.newAnswer)
-				console.log(vm.newAnswer[index])
-				console.log('why did not you think of this before?????????')
 				PostsFactory.answer({id: id, answer: vm.newAnswer[index], _owner: vm.user}) 
 					.then(function(){
 						console.log('successfully added post')
@@ -44,9 +65,53 @@
 					.catch(function() {
 						console.log('could not add post correctly')
 					})
-					getPosts()
+					getPosts();
 					vm.newAnswer = null
 			}
+
+			function getAnswers() {
+				PostsFactory.getAnswers()
+				.then(function(data) {
+					vm.answers = data
+				})
+				.catch(function(){
+					console.log('in the single psot controller and could not get posts')
+				})
+			}
+
+			function getCommentByid(id) {
+				console.log(id)
+			}
+
+
+			function Reply(id) {
+
+				PostsFactory.reply({id: id, comment: vm.newComment, _owner: vm.user})
+					.then(function() {
+						console.log('success added comment')
+						//PostFactry.get)
+						console.log(id)
+						getPosts()
+						vm.newComment = null
+					})
+					.catch(function() {
+						console.log('was not able to add post correctly')
+					})
+		
+				}
+
+			function getComments() {
+				console.log('getting comments')
+				PostsFactory.getComments()
+				.then(function(data) {
+					console.log(data)
+					vm.comments = data
+				})
+				.catch(function() {
+					console.log('could not get comments')
+				})
+			}
+
 		}
 
 
