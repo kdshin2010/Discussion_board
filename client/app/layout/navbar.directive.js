@@ -23,8 +23,6 @@
 			vm.isLoggedIn = isLoggedIn;
 			vm.user = AuthFactory.sendUserInfo();
 
-
-
 			function isLoggedIn() {
 				var user = AuthFactory.sendUserInfo();
 				AuthFactory.isLoggedIn(user)
