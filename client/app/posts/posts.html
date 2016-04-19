@@ -27,22 +27,22 @@
 	</div>
 
 	<div class="container-fluid" id='topic_container' style='margin-top: 1%'>
-	<form class='topics' ng-submit='vm.addPost()'>
+	<form class='topics'>
 		<div ng-show='vm.post_error' ng-init='vm.post_error=false'>
 			<p>User is Undefined Cannot Add Post</p>
 		</div>
 		<h4>Add A New Topic </h4>
 	  <div class="form-group">
 	    <label>Topic</label>
-	    <input type="text" class="form-control" id="topic_input" placeholder="Topic" ng-model = 'vm.newPost.topic' required>
+	    <input type="text" class="form-control" id="topic_input" placeholder="Topic" ng-model = 'vm.newPost.topic' ng-change="updateSelected" required>
 	  </div>
 	  <div class="form-group">
 	  	<label>Description</label>
-	 	<textarea class="form-control" ng-model = 'vm.newPost.description' rows="3"></textarea>
+	 	<textarea class="form-control" ng-model = 'vm.newPost.description' rows="3"></textarea ng-change="updateSelected">
 	 </div>
 	<div class="form-group" style='width: 20% margin-top: 5%' >
 	  <label for="sel1">Category</label>
-	  <select class="form-control" ng-model='vm.newPost.category'>
+	  <select class="form-control" ng-model='vm.newPost.category' ng-change="updateSelected">
 	    <option>Automotive</option>
 	    <option>Technology</option>
 	    <option>Religion</option>

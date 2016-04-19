@@ -91,15 +91,14 @@
 						console.log('success added comment')
 						//PostFactry.get)
 						console.log(id)
-						getPosts()
-						vm.newComment = null
 					})
 					.catch(function() {
 						console.log('was not able to add post correctly')
 					})
+					getPosts()
 		
 				}
-
+				
 			function getComments() {
 				console.log('getting comments')
 				PostsFactory.getComments()

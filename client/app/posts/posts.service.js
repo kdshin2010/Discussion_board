@@ -28,13 +28,13 @@
 			function addPost(info) {
 				var deferred = $q.defer()
 				$http.post('/addPost', {topic: info.topic, description: info.description, points: info.points, category: info.category, owner: info.owner, date: info.date})
-				.success(function() {
-					deferred.resolve()
+				.success(function(result) {
+					deferred.resolve(result);
 				})
 				.error(function() {
-					deferred.reject
+					deferred.reject();
 				})
-				return deferred.promise
+				return deferred.promise;
 			}
 
 			function getAnswers() {
@@ -80,17 +80,17 @@
 			} 
 
 			function reply(info) {
-				var deferred = $q.defer()
+				var deferred = $q.defer();
 				$http.post('/reply', {id: info.id, comment: info.comment, owner: info._owner})
 				.success(function() {
-					console.log('sucess replying to comment')
-					deferred.resolve()
+					console.log('sucess replying to comment');
+					deferred.resolve();
 				})
 				.error(function() {
-					console.log('error replying to comment')
-					deferred.reject()
+					console.log('error replying to comment');
+					deferred.reject();
 				})
-				return deferred.promise
+				return deferred.promise;
 			}
 
 			function getComments() {

@@ -12,12 +12,17 @@
 
 			vm.hello = 'testing'
 			vm.register = register;
+			vm.userInformation = data;
 
 			function register() {
-				console.log('in the controller')
-				AuthFactory.register(vm.newUser.username)
+				// initial values
+				vm.error = false;
+				vm.disabled = true;
+
+				AuthFactory.register(vm.newUser.username, vm.newUser.password, vm.newUser.email)
 				.then(function() {
-					console.log('successfully added username to database and im in the contorller')
+					console.log('successfully added username to database and im in the contorller');
+					vm.disabled = false;
 					$location.path('/posts')
 				})
 				.catch(function() {

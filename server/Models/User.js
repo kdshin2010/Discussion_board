@@ -19,7 +19,8 @@ var mongoose = require('mongoose'),
 
 var User = new mongoose.Schema({
 	username: String,
-	isLoggedIn: {type: Boolean, default: false}
+	password: String,
+	email: String
 	// posts: [{type: ObjectId, ref: 'Post' }]
 })
 

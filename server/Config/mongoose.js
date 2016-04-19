@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+mongoose.set('debug', true);
 var fs = require('fs');
 var path = require('path');
 mongoose.connect('mongodb://localhost/blog');

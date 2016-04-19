@@ -21,26 +21,12 @@
 
 			return service;		
 
-			function testing() {
-				console.log('testing')
-			}
+			//Register user
+			function register(username, password, email)
 
-			function register(userinfo) {
-				console.log(userinfo)
-				var deferred = $q.defer() 
-				$http.post('/user/register', {username: userinfo})
-				.success(function() {
-					user = userinfo;
-					console.log(user)
-					console.log('got the user to the database')
-					deferred.resolve()
-				})
-				.error(function() {
-					console.log('error saving user to dat ase')
-					deferred.reject();
-				})
-				return deferred.promise
-			}
+
+
+
 
 			function sendUserInfo() {
 				console.log(user)

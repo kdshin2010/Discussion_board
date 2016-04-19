@@ -18,16 +18,18 @@
 			function addPost() {
 				if (vm.user === undefined) {
 					vm.post_error = true;
-					vm.newPost = {}
 				} else {
+					console.log('adding post')
 					PostsFactory.addPost({topic: vm.newPost.topic, description: vm.newPost.description, category: vm.newPost.category, owner: vm.user })
-					.then(function() {
+					.then(function(result) {
+						vm.posts.push(result)
+						console.log(result);
 						console.log('sucessfully added post')
 					})
 					.catch(function() {
 						console.log('could not save post')
 					})
-					getPosts()
+					//getPosts()
 
 					vm.newPost = {}
 				}
