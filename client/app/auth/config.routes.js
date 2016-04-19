@@ -22,6 +22,11 @@
 				controller: 'AuthController',
 				controllerAs: 'vm'
 			})
+			$routeProvider.when('/', {
+				templateUrl: 'app/auth/register.html',
+				controller: 'AuthController',
+				controllerAs: 'vm'
+			})
 
 		}
 })();

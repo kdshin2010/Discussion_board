@@ -7,7 +7,6 @@
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">
 				<div class="login-group">
-				{{vm.newUser}}
 					<div class="form-group">
 						<label for="reg_username" class="sr-only">Email address</label>
 						<input type="text" class="form-control" placeholder="Username" ng-model='vm.newUser.username'>
@@ -33,7 +32,7 @@
 				<button type="submit" class="login-button"><i class="fa fa-chevron-right" ng-click='vm.register()'></i></button>
 			</div>
 			<div class="etc-login-form">
-				<p>already have an account? <a href="#">login here</a></p>
+				<p>already have an account? <a href="#/login">login here</a></p>
 			</div>
 		</form>
 	</div>
