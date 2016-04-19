@@ -6,8 +6,6 @@ declare user = null
 declare userinfo
 
 
-
-
 */
 // ************************** AuthFactory **************** 
 
@@ -80,4 +78,13 @@ function RegisterController($location, AuthFactory) {
 
 
 	}
+}
+
+
+function removeSmallest(numbers) {
+	var lowest = numbers.sort().shift();
+	console.log(lowest);
+	console.log(numbers.indexOf(lowest))
+	numbers.splice(numbers.indexOf(lowest), 1);
+	return numbers
 }

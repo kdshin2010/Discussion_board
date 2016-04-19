@@ -8,9 +8,8 @@
 		// why doesnt post service inject properly?
 		function PostsControllerFunction($http, AuthFactory, PostsFactory){
 			var vm = this;
-			vm.user = AuthFactory.sendUserInfo();
-			console.log(vm.user)
-
+			var user = AuthFactory.sendUserInfo();
+			vm.username = user.user.username
 			vm.posts;
 			vm.post_error
 			getPosts();
@@ -20,7 +19,7 @@
 			function addPost() {
 				console.log('adding eeee')
 				console.log(vm.user)
-				PostsFactory.addPost({topic: vm.newPost.topic, description: vm.newPost.description, category: vm.newPost.category, owner: vm.user })
+				PostsFactory.addPost({topic: vm.newPost.topic, description: vm.newPost.description, category: vm.newPost.category, owner: vm.username })
 				.then(function(result) {
 					vm.posts.push(result)
 					console.log(result);
@@ -46,7 +45,6 @@
 				})
 
 			}
-
 		}
 
 })()
