@@ -16,10 +16,8 @@
 			getPosts();
 			// AddPost 
 			function addPost() {
-				if (vm.user === undefined) {
-					vm.post_error = true;
-				} else {
-					console.log('adding post')
+
+					console.log('adding eeee')
 					PostsFactory.addPost({topic: vm.newPost.topic, description: vm.newPost.description, category: vm.newPost.category, owner: vm.user })
 					.then(function(result) {
 						vm.posts.push(result)
@@ -32,7 +30,7 @@
 					//getPosts()
 
 					vm.newPost = {}
-				}
+				
 			}
 
 			function getPosts() {

@@ -14,21 +14,46 @@
     </header>
 
     <!-- Main Content -->
-    <div class="container">
+    <div class="container" style='width: 60%'>
         <div class="row">
+			<div class="container-fluid" id='topic_container' style='margin-top: 1%'>
+				<form class='topics'>
+					<div ng-show='vm.post_error' ng-init='vm.post_error=false'>
+						<p>User is Undefined Cannot Add Post</p>
+					</div>
+						<h2 style='text-align: center;'>Add A New Question </h2>
+	  				<div class="form-group" style='margin-top: 5px'>
+	   					 <label>Question</label>
+	   						 <input type="text" class="form-control" id="topic_input" placeholder="Topic" ng-model = 'vm.newPost.topic' ng-change="updateSelected" required>
+	  				</div>
+	 				 <div class="form-group">
+	  						<label>Description</label>
+	 						<textarea class="form-control" ng-model = 'vm.newPost.description' rows="3"></textarea ng-change="updateSelected">
+					 </div>
+					 <div class="form-group" style='width: 20% margin-top: 5%' >
+	 						 <label for="sel1">Category</label>
+	 						 <select class="form-control" ng-model='vm.newPost.category' ng-change="updateSelected">
+	    						<option>Automotive</option>
+	    						<option>Technology</option>
+	   						    <option>Religion</option>
+	    						<option>Finance</option>
+	 						 </select>
+					</div>
+	 					 <button type="submit" ng-click='vm.addPost()' class="btn btn-primary" style='margin-top: 10px; float: right;'>Submit</button>
+				</form>
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-preview">
-                    <a href="post.html">
+                <div class="post-preview" ng-repeat='post in vm.posts'>
+                    <a href="/#/post/{{post._id}}">
                         <h2 class="post-title">
-                            Man must explore, and this is exploration at its greatest
-                        </h2>
+                        	{{post.topic}}
+                        </h2> 
                         <h3 class="post-subtitle">
-                            Problems look mighty small from 150 miles up
+                        	{{post.category}}
                         </h3>
                     </a>
-                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 24, 2014</p>
+                    <p class="post-meta">Posted by <a href="#/posts/{{post._id}}">{{post.owner}}</a> on September 24, 2014</p>
                 </div>
-                <hr>
+                <!-- <hr>
                 <div class="post-preview">
                     <a href="post.html">
                         <h2 class="post-title">
@@ -60,7 +85,7 @@
                         </h3>
                     </a>
                     <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
-                </div>
+                </div> -->
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
@@ -68,12 +93,10 @@
                         <a href="#">Older Posts &rarr;</a>
                     </li>
                 </ul>
-            </div>
-        </div>
+<!--             </div>
+ -->        </div>
     </div>
-
     <hr>
-
     <!-- Footer -->
     <footer>
         <div class="container">

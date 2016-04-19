@@ -12,5 +12,11 @@
 				controller: 'PostsController',
 				controllerAs: 'vm'
 			})
+			$routeProvider.when('/posts/:id', {
+				templateUrl: 'app/posts/posts.html',
+				controller: 'PostsController',
+				controllerAs: 'vm'
+			})
+
 		}
 })(); 
