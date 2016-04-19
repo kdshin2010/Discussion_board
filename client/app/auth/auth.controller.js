@@ -13,7 +13,7 @@
 			vm.hello = 'testing'
 			vm.register = register;
 			vm.login = login;
-			// vm.userInformation = data;
+			vm.userInfo
 
 			function register() {
 				// initial values
@@ -23,6 +23,7 @@
 				.then(function() {
 					console.log('successfully added username to database and im in the contorller');
 					vm.disabled = false;
+					location.path('/login')
 				})
 				.catch(function() {
 					console.log('error adding username in the controller :/')
@@ -36,7 +37,8 @@
 				vm.disabled = true;
 				AuthFactory.login(vm.user.username, vm.user.password)
 				.then(function(data) {
-					//set userinformation as data
+					console.log(data);
+					vm.userInfo = data;
 					$location.path('/posts');
 					vm.disabled = false;
 					vm.user = {}

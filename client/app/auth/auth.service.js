@@ -45,6 +45,8 @@
 				$http.post('/user/login', {username: username, password: password})
 				.success(function(data, status) {
 					if(status === 200 && data.status) {
+						console.log(data);
+						var user = data;
 						deferred.resolve(data);
 					} else {
 						deferred.reject();
