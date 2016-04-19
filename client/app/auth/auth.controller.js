@@ -23,7 +23,7 @@
 				.then(function() {
 					console.log('successfully added username to database and im in the contorller');
 					vm.disabled = false;
-					location.path('/login')
+					$location.path('/login');
 				})
 				.catch(function() {
 					console.log('error adding username in the controller :/')
@@ -32,7 +32,6 @@
 			}
 
 			function login() {
-				console.log('loggin ing')
 				vm.error = false;
 				vm.disabled = true;
 				AuthFactory.login(vm.user.username, vm.user.password)
