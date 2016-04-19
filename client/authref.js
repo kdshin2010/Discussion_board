@@ -63,8 +63,6 @@ declare userinfo
 
 
 
-
-
 //register controller
 
 function RegisterController($location, AuthFactory) {
@@ -76,15 +74,13 @@ function RegisterController($location, AuthFactory) {
 
 		//Call register service
 
-
 	}
 }
-
 
 function removeSmallest(numbers) {
 	var lowest = numbers.sort().shift();
 	console.log(lowest);
-	console.log(numbers.indexOf(lowest))
+	console.log(numbers.indexOf(lowest));
 	numbers.splice(numbers.indexOf(lowest), 1);
 	return numbers
 }

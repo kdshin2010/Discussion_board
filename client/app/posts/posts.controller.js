@@ -17,7 +17,6 @@
 			getPosts();
 			// AddPost 
 			function addPost() {
-				console.log('adding eeee')
 				console.log(vm.user)
 				PostsFactory.addPost({topic: vm.newPost.topic, description: vm.newPost.description, category: vm.newPost.category, owner: vm.username })
 				.then(function(result) {

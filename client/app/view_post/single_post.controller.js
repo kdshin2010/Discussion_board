@@ -21,7 +21,10 @@
 			vm.Answer = Answer;
 			vm.comments;
 			getComments();
-			vm.replies
+			vm.replies;
+			//make an $http request to get find ID and render data for the post
+			console.log($routeParams.id)
+
 
 			// var forEach = function (array, callback) {
 			// 	for(var i=0; i<array.length; i++) {
@@ -78,6 +81,8 @@
 					console.log('in the single psot controller and could not get posts')
 				})
 			}
+
+
 
 			function getCommentByid(id) {
 				console.log(id)

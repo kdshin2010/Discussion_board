@@ -7,7 +7,7 @@
 		
 		function configFunction($routeProvider) {
 			$routeProvider.when('/single_post/:id', {
-				templateUrl: 'app/view_post/single_post.html',
+				templateUrl: 'app/view_post/Eachpost.html',
 				controller: 'SinglePostController',
 				controllerAs: 'vm'
 			})

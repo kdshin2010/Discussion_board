@@ -27,6 +27,6 @@
 				controller: 'AuthController',
 				controllerAs: 'vm'
 			})
-			.otherwise({ redirectTo: '/'});
+			// .otherwise({ redirectTo: '/'});
 		}
 })();
