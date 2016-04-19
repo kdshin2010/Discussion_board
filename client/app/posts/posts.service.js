@@ -20,8 +20,7 @@
 			var user = AuthFactory.sendUserInfo();
 
 
-			setTimeout(function(){console.log(AuthFactory.sendUserInfo())}, 3000)
-
+			setTimeout(function(){console.log(user)}, 3000)
 
 			return service
 

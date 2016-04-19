@@ -12,6 +12,7 @@
             </div>
         </div>
     </header>
+    Hola {{vm.user}}
 
     <!-- Main Content -->
     <div class="container" style='width: 60%'>
@@ -24,7 +25,7 @@
 						<h2 style='text-align: center;'>Add A New Question </h2>
 	  				<div class="form-group" style='margin-top: 5px'>
 	   					 <label>Question</label>
-	   						 <input type="text" class="form-control" id="topic_input" placeholder="Topic" ng-model = 'vm.newPost.topic' ng-change="updateSelected" required>
+	   						 <input type="text" class="form-control" id="topic_input" placeholder="Topic" ng-model ='vm.newPost.topic' ng-change="updateSelected" required>
 	  				</div>
 	 				 <div class="form-group">
 	  						<label>Description</label>

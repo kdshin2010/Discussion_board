@@ -46,7 +46,7 @@
 				.success(function(data, status) {
 					if(status === 200 && data.status) {
 						console.log(data);
-						var user = data;
+						user = data;
 						deferred.resolve(data);
 					} else {
 						deferred.reject();
@@ -59,10 +59,6 @@
 				//return promise object
 				return deferred.promise
 			}
-
-
-
-
 
 
 			function sendUserInfo() {
