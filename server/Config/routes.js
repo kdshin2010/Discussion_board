@@ -11,35 +11,35 @@ var express = require('express'),
   Post = require('../Models/Post.js');
 
 // ------------------ Register user ------------------------
-// routes.post('/user/register', function(req, res) {
-//   console.log(req.body)
-//   User.register(new User({ username: req.body.username }), req.body.password, function(err, account) {
-//     if (err) {
-//       return res.status(500).json({err: err});
-//     }
-//     passport.authenticate('local')(req, res, function () {
-//       return res.status(200).json({status: 'Registration successful!'});
-//     });
-//   });
-// });
+routes.post('/user/register', function(req, res) {
+  console.log(req.body)
+  User.register(new User({ username: req.body.username}), req.body.password, function(err, account) {
+    if (err) {
+      return res.status(500).json({err: err});
+    }
+    passport.authenticate('local')(req, res, function () {
+      return res.status(200).json({status: 'Registration successful!'});
+    });
+  });
+});
 
-// routes.post('/user/login', function(req, res, next) {
-//   passport.authenticate('local', function(err, user, info) {
-//     if (err) {
-//       return res.status(500).json({err: err});
-//     }
-//     if (!user) {
-//       return res.status(401).json({err: info});
-//     }
-//     req.logIn(user, function(err) {
-//       if (err) {
-//         return res.status(500).json({err: 'Could not log in user'});
-//       }
-//       res.status(200).json({status: 'Login successful!', user: user});
-//       console.log(req.user)
-//     });
-//   })(req, res, next);
-// });
+routes.post('/user/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) {
+      return res.status(500).json({err: err});
+    }
+    if (!user) {
+      return res.status(401).json({err: info});
+    }
+    req.logIn(user, function(err) {
+      if (err) {
+        return res.status(500).json({err: 'Could not log in user'});
+      }
+      res.status(200).json({status: 'Login successful!', user: user});
+      console.log(req.user)
+    });
+  })(req, res, next);
+});
 
 
 routes.post('/user/register', function(req, res) {

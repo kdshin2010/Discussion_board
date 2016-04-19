@@ -8,7 +8,6 @@
 		function AuthFactoryFunction($http, $q) {
 			var service = {
 				register: register,
-				testing: testing,
 				sendUserInfo: sendUserInfo,
 				checkUser: checkUser,
 				logout: logout,
@@ -22,7 +21,23 @@
 			return service;		
 
 			//Register user
-			function register(username, password, email)
+			function register(username, password, email) {
+				var deferred = $q.defer();
+				$http.post('/user/register', {username: username, password: password, email: email})
+				.success(function(data, status) {
+					if(status === 200 && data.status) {
+						deferred.resolve(data);
+					} else {
+						deferred.reject();
+					}
+				})
+				//handle error
+				.error(function(data) {
+					deferred.reject(data);
+				});
+				//return promise object
+				return deferred.promise
+			}
 
 
 

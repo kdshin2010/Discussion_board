@@ -1,15 +1,28 @@
-<div  style='width: 30%; margin-top: 10%; margin: 0 auto;' > 
-  <form class="form-signin">
-          <h2 class="form-signin-heading">Please Log in</h2>
-          <label for="inputEmail" class="sr-only">Email address</label>
-          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-          <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
+<div class="text-center" style="padding:50px 0">
+  <div class="logo">login</div>
+  <!-- Main Form -->
+  <div class="login-form-1">
+    <form id="login-form" class="text-left">
+      <div class="login-form-main-message"></div>
+      <div class="main-login-form">
+        <div class="login-group">
+          <div class="form-group">
+            <label for="lg_username" class="sr-only">Username</label>
+            <input type="text" class="form-control" name="lg_username" ng-modled = 'vm.user.username' placeholder="username">
           </div>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </form>
+          <div class="form-group">
+            <label for="lg_password" class="sr-only">Password</label>
+            <input type="password" class="form-control" name="lg_password" ng-model='vm.user.password' placeholder="password">
+          </div>
+
+        </div>
+        <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+      </div>
+      <div class="etc-login-form">
+        <p>forgot your password? <a href="#">click here</a></p>
+        <p>new user? <a href="#">create new account</a></p>
+      </div>
+    </form>
+  </div>
+  <!-- end:Main Form -->
 </div>
