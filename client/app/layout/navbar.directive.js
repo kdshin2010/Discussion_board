@@ -6,7 +6,7 @@
 
 		function ksNavbarFunction() {
 			return {
-				templateUrl: 'app/layout/navbar.html',
+				templateUrl: 'app/layout/nav2.html',
 				restrict: 'E',
 				scope: {},
 				controller: NavBarControllerFunction,

@@ -8,7 +8,7 @@
 
 		function configFunction($routeProvider) {
 			$routeProvider.when('/posts', {
-				templateUrl: 'app/posts/posts.html',
+				templateUrl: 'app/posts/post_page.html',
 				controller: 'PostsController',
 				controllerAs: 'vm'
 			})
