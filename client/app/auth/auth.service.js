@@ -9,6 +9,7 @@
 			var service = {
 				register: register,
 				sendUserInfo: sendUserInfo,
+				login: login,
 				checkUser: checkUser,
 				logout: logout,
 				isLoggedIn: isLoggedIn
@@ -38,6 +39,25 @@
 				//return promise object
 				return deferred.promise
 			}
+
+			function login(username, password) {
+				var deferred = $q.defer();
+				$http.post('/user/login', {username: username, password: password})
+				.success(function(data, status) {
+					if(status === 200 && data.status) {
+						deferred.resolve(data);
+					} else {
+						deferred.reject();
+					}
+				})
+				//handle error
+				.error(function(data) {
+					deferred.reject(data);
+				});
+				//return promise object
+				return deferred.promise
+			}
+
 
 
 

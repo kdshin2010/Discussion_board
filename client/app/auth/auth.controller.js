@@ -31,9 +31,9 @@
 			}
 
 			function login() {
+				console.log('loggin ing')
 				vm.error = false;
 				vm.disabled = true;
-
 				AuthFactory.login(vm.user.username, vm.user.password)
 				.then(function(data) {
 					//set userinformation as data
