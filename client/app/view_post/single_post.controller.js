@@ -56,6 +56,7 @@
 					console.log(data);
 					console.log('retrieved the single post');
 					vm.singlePost = data;
+					console.log(vm.singlePost)
 
 				})
 				.catch(function(err) {
@@ -64,11 +65,6 @@
 				})
 				
 			}
-
-
-
-
-
 
 			function Reply(id) {
 				PostsFactory.reply({id: id, comment: vm.newComment, _owner: vm.user})

@@ -48,6 +48,10 @@ posts.answer = function(req, res) {
 		}
 	})
 }
+
+
+
+
 posts.getPostById = function(req, res) {
 	Post.findOne({_id: req.body.id}, function(err, result) {
 		if(err) {
