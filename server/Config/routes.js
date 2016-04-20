@@ -47,45 +47,48 @@ routes.post('/user/register', function(req, res) {
 })
 
 routes.post('/check', function(req, res) {
-	users.check(req, res)
+	users.check(req, res);
 })
 
 routes.post('/logout', function(req, res){
-  users.logout(req, res)
+  users.logout(req, res);
 })
 
 routes.post('/isLoggedIn', function(req, res) {
-  users.isLoggedIn(req, res)
+  users.isLoggedIn(req, res);
 })
 
 routes.post('/addPost', function(req, res) {
-  posts.create(req, res)
+  posts.create(req, res);
 })
 
 routes.get('/getPosts', function(req, res) {
-  posts.show(req, res)
+  posts.show(req, res);
 })
 
 routes.post('/answer', function(req, res) {
-  posts.answer(req,res)
+  posts.answer(req,res);
 })
 
 routes.get('/getAnswers', function(req, res) {
-  posts.show(req,res)
+  posts.show(req,res);
 })
 
 routes.post('/findAnswer', function(req, res) {
-  posts.findAnswer(req, res)
+  posts.findAnswer(req, res);
 })
 
 routes.post('/reply', function(req, res) {
-  posts.reply(req,res)
+  posts.reply(req,res);
 })
 
 routes.get('/getComments', function(req, res) {
-  posts.showComments(req, res)
+  posts.showComments(req, res);
 })
 
+routes.post('/getPostById', function(req, res) {
+  posts.getPostById(req, res);
+})
 
 
 

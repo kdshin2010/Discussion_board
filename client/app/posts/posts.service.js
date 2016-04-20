@@ -14,7 +14,8 @@
 				// getAnswers: getAnswers,
 				reply: reply,
 				getComments: getComments,
-				getAnswers: getAnswers
+				getAnswers: getAnswers,
+				getSinglePost: getSinglePost
 			}
 
 			var user = AuthFactory.sendUserInfo();
@@ -100,6 +101,21 @@
 				})
 				.error(function(){
 					deferred.reject();
+				})
+				return deferred.promise
+			}
+
+			function getSinglePost(id) {
+				console.log(id);
+				console.log('this is the id given by routeParams')
+				var deferred = $q.defer();
+				$http.post('/getPostById' , {id: id})
+				.success(function(data) {
+					console.log(data)
+					deferred.resolve(data);
+				})
+				.error(function(err) {
+					deferred.reject(err);
 				})
 				return deferred.promise
 			}
