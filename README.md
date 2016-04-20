@@ -1,3 +1,7 @@
 # Discussion_board
 
-First Readme
+   npm install
+   npm start
+   
+   
+  
