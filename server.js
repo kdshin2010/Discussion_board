@@ -14,11 +14,8 @@ var User = require('./server/Models/User.js')
 require('./server/Config/mongoose.js');
 
 var routes = require('./server/Config/routes.js')
-
-
 //invoke express, require mongoose.js, require routes
 var app = express();
-
 //defining middleware
 app.use(express.static(path.join(__dirname, './client')));
 app.use(logger('dev'));

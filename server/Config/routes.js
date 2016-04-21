@@ -41,7 +41,6 @@ routes.post('/user/login', function(req, res, next) {
   })(req, res, next);
 });
 
-
 routes.post('/user/register', function(req, res) {
 	users.register(req, res)
 })

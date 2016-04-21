@@ -73,7 +73,6 @@ function RegisterController($location, AuthFactory) {
 		$scope.disabled = true;
 
 		//Call register service
-
 	}
 }
 

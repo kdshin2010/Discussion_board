@@ -51,7 +51,7 @@ posts.answer = function(req, res) {
 
 
 
-
+//check this 
 posts.getPostById = function(req, res) {
 	Post.findOne({_id: req.body.id}, function(err, result) {
 		if(err) {
