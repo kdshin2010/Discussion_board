@@ -1,0 +1,1 @@
+-Default -- > div stretches to fit parent container

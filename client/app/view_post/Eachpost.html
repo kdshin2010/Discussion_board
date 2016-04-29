@@ -1,41 +1,58 @@
-      <header class="intro-header" style="background-image: url('img/post-bg.jpg')">
+
+      <header class="intro-header" style="background-image: url('content/img/paradise.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="post-heading">
+                    <div class="post-heading" style='text-align: center'>
                     <!-- Restyle to show questions and answers -->
-                        <h1>{{vm.singlepost.topic}}</h1>
-                        <h2 style='margin-left:10px'>Topic: religion</h2>
+                        <h1 style='color: rgb(102, 255, 153)'>Topic: religion</h1>
                         <h3 class="subheading">This is somethign that has been </h2>
-                        <span class="meta">Posted by: {{vm.singlepost._owner}} <a href="#">Start Bootstrap</a> on August 24, 2014</span>
+                        <div class='posted_by' style='marign-top: 30px'><span class="meta">Posted by: {{vm.singlepost._owner}} <a href="#">Start Bootstrap</a> on August 24, 2014</span>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </header>
    <article>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <h2 class="section-heading">Answers</h2>
-                    <!-- Find Answer and repeat ng-repeat -->
-                    <div class='Reply_Div'>
-                        <div>
-                            <p><strong>Jordan: </strong> This is the first answer</p>
-                        </div>
-                        <div style='margin-left: 15px'>
-                            <p><strong>Javier</strong> This is the first reply</p>
-                            <input type='text'></input>
-                        </div>
-                    <h2 class="section-heading">Reaching for the Stars</h2>
-                    </div>
+                <!-- Set margin left to percentage -->
+    <div class='article_container' style='text-align: center;'>
+        <div class='heading'>
+            <h1 class='section-heading'>Answers</h1>
+            <div class='answers'>
+                <p class='the_answers'><strong>Kyle Shin</strong>: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p style='margin-left: 33px; text-align: left'>hello</p>
+
+                    
                 </div>
+
+                <p style='text-align: left; margin-left: 30px'><strong>Kyle Shin</strong>: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                
+                <p style='text-align: left; margin-left: 30px'><strong>Kyle Shin</strong>: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                
             </div>
         </div>
-    </article>
+    </div>
+   </article>
 
-    <hr>
+
+
+
 
     <!-- Footer -->
     <footer>

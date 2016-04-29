@@ -21,3 +21,12 @@
 .answer_owner{
 	font-weight: bold;
 }
+
+.post-heading {
+	text-align: center;
+}
+
+.the_answers {
+	text-align: left; 
+	margin-left: 30px;
+}
