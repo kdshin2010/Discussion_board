@@ -16,6 +16,7 @@
 			vm.addPost = addPost
 			getPosts();
 			// AddPost 
+
 			function addPost() {
 				console.log(vm.user)
 				PostsFactory.addPost({topic: vm.newPost.topic, description: vm.newPost.description, category: vm.newPost.category, owner: vm.username })
@@ -29,7 +30,7 @@
 				})
 				//getPosts()
 
-				vm.newPost = {}
+				vm.newPost = null;
 			}
 
 			function getPosts() {
@@ -45,7 +46,5 @@
 
 			}
 		}
-
-
 
 })()

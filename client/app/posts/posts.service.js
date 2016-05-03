@@ -10,15 +10,17 @@
 			var service = {
 				addPost: addPost,
 				getPosts: getPosts,
-				answer: Answer,
+				Answer: Answer,
 				// getAnswers: getAnswers,
 				reply: reply,
 				getComments: getComments,
 				getAnswers: getAnswers,
-				getSinglePost: getSinglePost
+				getSinglePost: getSinglePost,
+				Comment: Comment
 			}
 
 			var user = AuthFactory.sendUserInfo();
+			
 
 
 			setTimeout(function(){console.log(user)}, 3000)
@@ -37,16 +39,6 @@
 				return deferred.promise;
 			}
 
-			function getAnswers() {
-				var deferred = $q.defer()
-				$http.get('/getPosts')
-				.success(function(data) {
-					deferred.resolve(data)
-				})
-				.error(function() {
-					console.log('could not get posts')
-				})
-			}
 
 			function getPosts() {
 				var deferred = $q.defer()
@@ -61,15 +53,14 @@
 			}
 
 			function Answer(info) {
-
 				if(user = undefined) {
-					alert('Can Not post, user is undefined')
+					alert('Can Not post, user is undefined');
 				} else {
+					console.log(info)
 					var deferred = $q.defer()
-					$http.post('/answer', {id: info.id, answer: info.answer, owner: info._owner })
-					.success(function() {
-						console.log('success Answering to post')
-						deferred.resolve()
+					$http.post('/answer', {id: info.id, answer: info.answer, owner: info.owner})
+					.success(function(data) {
+						deferred.resolve(data);
 					})
 					.error(function() {
 						console.log('could not add post to data')
@@ -105,13 +96,43 @@
 				return deferred.promise
 			}
 
+			function Comment(info) {
+				if(user = undefined) {
+					alert('Can Not post, user is undefined');
+				} else {
+					var deferred = $q.defer()
+					$http.post('/comment', {id: info.id, comment: info.comment, owner: info.owner})
+					.success(function(data) {
+						console.log('success Answering to post')
+						deferred.resolve(data)
+					})
+					.error(function() {
+						console.log('could not add post to data')
+						deferred.reject();
+					})
+					return deferred.promise;
+				}
+			} 
+
+			function getAnswers(info) {
+				var deferred = $q.defer();
+				$http.post('/getAnswers', {id: info.id})
+				.success(function(data) {
+					deferred.resolve(data);
+				})
+				.error(function(error){
+					deferred.reject(error)
+				})
+				return deferred.promise;
+			}
+
+
 			function getSinglePost(id) {
 				console.log(id);
 				console.log('this is the id given by routeParams')
 				var deferred = $q.defer();
 				$http.post('/getPostById' , {id: id})
 				.success(function(data) {
-					console.log(data)
 					deferred.resolve(data);
 				})
 				.error(function(err) {
@@ -119,6 +140,7 @@
 				})
 				return deferred.promise
 			}
+
 		}
 		
 

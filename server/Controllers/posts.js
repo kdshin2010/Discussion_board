@@ -19,6 +19,20 @@ posts.create = function(req, res) {
 
 }
 
+posts.getAnswers = function(req, res) {
+	Answer.find({_post: req.body.id})
+	.populate('comments')
+	.exec(function(err, results){
+		if(err){
+			console.log('could not get answers')
+		} else {
+			console.log(results)
+			res.json(results);
+		}
+	})
+
+}
+
 posts.answer = function(req, res) {
 	console.log(req.body);
 	console.log('id' + req.body.id)
@@ -39,7 +53,8 @@ posts.answer = function(req, res) {
 						if(err) {
 							console.log(err)
 						} else {
-							//res.json(result)
+							res.json(result)
+							console.log(result)
 							console.log('successfully savied answer!')
 						}
 					})
@@ -48,6 +63,38 @@ posts.answer = function(req, res) {
 		}
 	})
 }
+
+posts.comment = function(req, res) {
+	console.log(req.body);
+	console.log('id' + req.body.id)
+	Answer.findOne({_id: req.body.id}, function(err, result) {
+		if(err) {
+			console.log('errror funding the post!')
+			res.json(err);
+		} else {
+			var comment = new Comment({ _owner: req.body.owner, comment: req.body.comment })//})
+			comment._post = result._id
+			result.comments.push(comment)
+			result.save(function(err) {
+				if(err) {
+					console.log(err);
+					res.json(err);
+				} else {
+					comment.save(function(err) {
+						if(err) {
+							console.log(err)
+						} else {
+							res.json(result)
+							console.log('successfully savied comment!')
+						}
+					})
+				}
+			})
+		}
+	})
+}
+
+
 
 
 
@@ -79,7 +126,6 @@ posts.getPostById = function(req,res) {
         	console.log(' * line 79 ');
         	console.log(result)
      
-		   // console.log(JSON.stringify(result))
            res.json(result)
         }
     });
@@ -140,8 +186,6 @@ posts.showComments = function(req, res){
 		}
 	})
 }
-
-
 
 
 

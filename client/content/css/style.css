@@ -42,7 +42,22 @@
 }
 
 #submit_answer {
-	width: 30%;
-	margin-top: 20px;
-	margin-left: 67% ;
+	width: 25%;
+	text-align: center;
+	margin: auto;
+	
 }
+
+#reply {
+	float: left;
+	margin-bottom: 4%;
+	margin-left: 35px;
+}
+
+#repeat_answers {
+	clear: left;
+}
+
+/*.glyphicon glyphicon-menu-down {
+	float: left;
+}*/

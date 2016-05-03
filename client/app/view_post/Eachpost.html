@@ -5,9 +5,10 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading" style='text-align: center'>
                     <!-- Restyle to show questions and answers -->
-                        <h1 style='color: rgb(102, 255, 153)'>Topic: religion</h1>
-                        <h3 class="subheading">This is somethign that has been </h2>
-                        <div class='posted_by' style='marign-top: 30px'><span class="meta">Posted by: {{vm.singlepost._owner}} <a href="#">Start Bootstrap</a> on August 24, 2014</span>
+                        <h1 style='color: rgb(102, 255, 153)'> {{vm.singlePost.topic}}</h1>
+                        <h3 class="subheading">{{vm.singlePost.description}} </h3>
+                        <h3 class='category'>Category: {{vm.singlePost.category}}</h3>
+                        <div class='posted_by' style='marign-top: 30px'><span class="meta">Posted by: {{vm.singlePost.owner}} <a href="#"> </a> on August 24, 2014</span>
                         </div>
                     </div>
                 </div>
@@ -17,45 +18,35 @@
    <article>
                 <!-- Set margin left to percentage -->
     <div class='article_container' style='text-align: center;'>
-        {{vm.singlePost}}
-
+        <button class ='btn btn-primary' id='show_answer_question'>Answer Question</button>
+        <div class="form-group" id='show_answer_form' ng-show='vm.show_answer' ng-init='vm.show_answer = true'>
+            <label for="comment">Answer:</label>
+             <textarea class="form-control" rows="5" id="comment" ng-model='vm.newAnswer.answer'></textarea>
+             <button class='btn btn-success' style='font-size: 10px;' id='submit_answer' ng-click='vm.Answer()'>Submit</button>
+        </div>
         <div class='heading'>
             <h1 class='section-heading'>Answers</h1>
-            <div class='answers'>
-                <p class='the_answers'><strong>Kyle Shin</strong>: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p style='margin-left: 33px; text-align: left'>hello</p>
-
-                    
-                </div>
-
-                <p style='text-align: left; margin-left: 30px'><strong>Kyle Shin</strong>: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                
-                <p style='text-align: left; margin-left: 30px'><strong>Kyle Shin</strong>: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                
+            <div class='answers' ng-repeat ='answer in vm.answers track by $index' id='repeat_answers'>
+                <p class='the_answers'><strong>{{answer._owner}}</strong>: {{answer.answer}}</p>
+                    <div id = "reply"> 
+                        <button class='glyphicon glyphicon-menu-down'>Reply</button>
+                        <button class='glyphicon glyphicon-menu-down'>Show</button>
+                        <form class="form-inline">
+                              <div class="form-group">
+                                <input type="text" class="form-control" ng-model='vm.newComment[$index]'>
+                              </div>
+                              <button class="btn btn-default" ng-click='vm.Comment(answer._id, $index)'>Comment</button>
+                            </form>
+                        <div class='show_comments' ng-repeat = 'comment in answer.comments'>
+                            <ul>
+                                <li><strong>{{comment._owner}}: </strong>{{comment.comment}}</li>
+                            </ul>
+                        </div>
+                  </div>
             </div>
         </div>
     </div>
    </article>
-
-
-
-
-
     <!-- Footer -->
     <footer>
         <div class="container">

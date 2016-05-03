@@ -89,6 +89,14 @@ routes.post('/getPostById', function(req, res) {
   posts.getPostById(req, res);
 })
 
+routes.post('/comment', function(req, res){
+  posts.comment(req, res);
+})
+
+
+routes.post('/getAnswers', function(req, res) {
+  posts.getAnswers(req,res)
+})
 
 
 
