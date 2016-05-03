@@ -46,9 +46,6 @@
 			}
 		}
 
-		function check(m, n) {
-			return (m-1) * (n-1)
-		}
+
 
 })()
-
