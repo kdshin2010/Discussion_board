@@ -39,8 +39,7 @@ posts.answer = function(req, res) {
 						if(err) {
 							console.log(err)
 						} else {
-							console.log(result)
-							res.json(result)
+							//res.json(result)
 							console.log('successfully savied answer!')
 						}
 					})
@@ -53,33 +52,19 @@ posts.answer = function(req, res) {
 
 
 //check this 
-posts.getPostById = function(req, res) {
-	Post.findOne({_id: req.body.id}, function(err, result) {
-		if(err) {
-			console.log(err);
-		} else {
-			console.log(result);
-			res.json(result);
-		}
-	})
-}
-
-// posts.show = function(req, res) {
-// 	Post.find()
-// 	.populate('answers')
-// 	.exec(function(err, result) {
+// posts.getPostById = function(req, res) {
+// 	Post.findOne({_id: req.body.id}, function(err, result) {
 // 		if(err) {
-// 			console.log('error finding post')
+// 			console.log(err);
 // 		} else {
-// 			res.json(result)
+// 			console.log(result);
+// 			res.json(result);
 // 		}
 // 	})
 // }
 
-posts.show = function(req,res) {
-	console.log(req.body);
-	console.log('in the backend controllers get answers for post')
-  Post.find()
+posts.getPostById = function(req,res) {
+  Post.findOne({_id: req.body.id})
     .populate({
       "path": "answers",
       "populate": {
@@ -91,13 +76,52 @@ posts.show = function(req,res) {
         if (err) {
            console.log(err);
         } else {
-        	console.log(' * line 71 ');
+        	console.log(' * line 79 ');
+        	console.log(result)
      
 		   // console.log(JSON.stringify(result))
            res.json(result)
         }
     });
+
+
 }
+
+
+
+
+posts.show = function(req,res) {
+	Post.find({}, function(err, data){
+		if(err) {
+			console.log(err)
+		} else {
+			res.json(data)
+		}
+	})
+}
+
+// posts.show = function(req,res) {
+//   Post.find()
+//     .populate({
+//       "path": "answers",
+//       "populate": {
+//         "path": "comments",
+//         "model": "Comment"  
+//       }
+//     })
+//     .exec(function(err,result) {
+//         if (err) {
+//            console.log(err);
+//         } else {
+//         	console.log(' * line 71 ');
+     
+// 		   // console.log(JSON.stringify(result))
+//            res.json(result)
+//         }
+//     });
+
+
+// }
 
 
 
@@ -116,10 +140,6 @@ posts.showComments = function(req, res){
 		}
 	})
 }
-
-// posts.getAnswersForPost = function(req, res) {
-// 	Post.findOne
-// }
 
 
 
