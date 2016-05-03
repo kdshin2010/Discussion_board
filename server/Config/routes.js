@@ -42,11 +42,11 @@ routes.post('/user/login', function(req, res, next) {
 });
 
 routes.post('/user/register', function(req, res) {
-	users.register(req, res)
+  users.register(req, res)
 })
 
 routes.post('/check', function(req, res) {
-	users.check(req, res);
+  users.check(req, res);
 })
 
 routes.post('/logout', function(req, res){
@@ -57,19 +57,19 @@ routes.post('/isLoggedIn', function(req, res) {
   users.isLoggedIn(req, res);
 })
 
-routes.post('/addPost', function(req, res) {
-  posts.create(req, res);
+routes.get('/getPosts', function(req,res) {
+  posts.show(req,res);
 })
 
-routes.get('/getPosts', function(req, res) {
-  posts.show(req, res);
+routes.post('/addPost', function(req, res) {
+  posts.create(req, res);
 })
 
 routes.post('/answer', function(req, res) {
   posts.answer(req,res);
 })
 
-routes.post('/getAnswers', function(req, res) {
+routes.get('/getAnswers', function(req, res) {
   posts.show(req,res);
 })
 
@@ -89,9 +89,6 @@ routes.post('/getPostById', function(req, res) {
   posts.getPostById(req, res);
 })
 
-routes.post('/getAnswersForPost', function(req, res){
-  posts.getAnswersForPost(req, res)
-})
 
 
 
