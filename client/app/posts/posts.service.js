@@ -60,25 +60,6 @@
 				return deferred.promise
 			}
 
-			function Answer(info) {
-
-				if(user = undefined) {
-					alert('Can Not post, user is undefined')
-				} else {
-					var deferred = $q.defer()
-					$http.post('/answer', {id: info.id, answer: info.answer, owner: info._owner })
-					.success(function() {
-						console.log('success Answering to post')
-						deferred.resolve()
-					})
-					.error(function() {
-						console.log('could not add post to data')
-						deferred.reject()
-					})
-					return deferred.promise;
-				}
-			} 
-
 			function reply(info) {
 				var deferred = $q.defer();
 				$http.post('/reply', {id: info.id, comment: info.comment, owner: info._owner})
@@ -119,6 +100,29 @@
 				})
 				return deferred.promise
 			}
+
+			function getAnswers(info) {
+				var deferred = $q.defer();
+				$http.post('/getAnswersForPost', {id: info.id})
+				.success(function(data) {
+					deferred.resolve(data);
+				})
+				.catch(function() {
+					deferred.reject();
+				})
+				return deferred.promise
+			}
+
+			function Answer(info) {
+				var deferred = $q.defer();
+				$http.post('/answer', {id: info.id, answer: info.answer, owner: user})
+				.success(function(data) {
+					console.log(data);
+					deferred.resolve(data)
+				})
+			}
+
+
 		}
 		
 

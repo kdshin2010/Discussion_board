@@ -69,7 +69,7 @@ routes.post('/answer', function(req, res) {
   posts.answer(req,res);
 })
 
-routes.get('/getAnswers', function(req, res) {
+routes.post('/getAnswers', function(req, res) {
   posts.show(req,res);
 })
 
@@ -89,6 +89,9 @@ routes.post('/getPostById', function(req, res) {
   posts.getPostById(req, res);
 })
 
+routes.post('/getAnswersForPost', function(req, res){
+  posts.getAnswersForPost(req, res)
+})
 
 
 

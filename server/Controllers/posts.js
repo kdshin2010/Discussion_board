@@ -39,7 +39,8 @@ posts.answer = function(req, res) {
 						if(err) {
 							console.log(err)
 						} else {
-							//res.json(result)
+							console.log(result)
+							res.json(result)
 							console.log('successfully savied answer!')
 						}
 					})
@@ -76,6 +77,8 @@ posts.getPostById = function(req, res) {
 // }
 
 posts.show = function(req,res) {
+	console.log(req.body);
+	console.log('in the backend controllers get answers for post')
   Post.find()
     .populate({
       "path": "answers",
@@ -94,8 +97,6 @@ posts.show = function(req,res) {
            res.json(result)
         }
     });
-
-
 }
 
 
@@ -115,6 +116,10 @@ posts.showComments = function(req, res){
 		}
 	})
 }
+
+// posts.getAnswersForPost = function(req, res) {
+// 	Post.findOne
+// }
 
 
 

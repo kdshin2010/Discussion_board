@@ -30,3 +30,19 @@
 	text-align: left; 
 	margin-left: 30px;
 }
+
+.form-group {
+	width: 40%;
+	margin: 0 auto;
+}
+
+.text_answer {
+	width: 60%;
+	margin: 0 auto;
+}
+
+#submit_answer {
+	width: 30%;
+	margin-top: 20px;
+	margin-left: 67% ;
+}

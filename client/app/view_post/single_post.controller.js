@@ -11,19 +11,33 @@
 			var vm = this;
 			//to get get view of single Post instead of list of all posts get data from post Id and name
 			//find single post
+			// var user = AuthFactory.sendUserInfo();
+			// vm.user = user.user.username
+			var user = 'Kyle';
+			vm.user = 'Kyle'
+
+
 
 			var thisPostId = $routeParams.id
 			vm.test = 'hello';
-			vm.user = AuthFactory.sendUserInfo();
 			vm.answers;
-			vm.Reply = Reply
 			getPosts();
-			vm.Answer = Answer;
+			vm.show_answer_form = show_answer_form
 			vm.comments;
 			vm.replies;
 			vm.singlePost;
-			getSinglePost();
-			//make an $http request to get find ID and render data for the post
+			vm.Answer = Answer;
+			vm.answers
+
+			function getAnswers() {
+				PostsFactory.getAnswers({id: thisPostId})
+				.then(function(data) {
+					vm.answers = data;
+				})
+				.catch(function() {
+					console.log('error getting answers!')
+				})
+			}
 
 
 			function getPosts() {
@@ -38,47 +52,34 @@
 				})
 			}
 
-			function Answer(id , index) {
-				PostsFactory.answer({id: id, answer: vm.newAnswer[index], _owner: vm.user}) 
-					.then(function(){
-						console.log('successfully added post')
-					})
-					.catch(function() {
-						console.log('could not add post correctly');
-					})
-					getPosts();
-					vm.newAnswer = null
+			function getAnswers() {
+				PostsFactory.getAnswers({id: thisPostId})
+				.then(function(data) {
+					vm.answers = data;
+				})
+				.catch(function(){
+					console.log('unable to get answers for this post')
+				})
 			}
 
-			function getSinglePost() {
-				PostsFactory.getSinglePost($routeParams.id)
+			function show_answer_form() {
+				vm.show_answer = true;
+			}
+
+			function Answer() {
+				PostsFactory.Answer({id: thisPostId, answer: vm.newAnswer.answer})
 				.then(function(data) {
 					console.log(data);
-					console.log('retrieved the single post');
-					vm.singlePost = data;
-					console.log(vm.singlePost)
-
+					vm.answers.push(data);
 				})
-				.catch(function(err) {
-					console.log(err)
-					console.log('unable to retrive the post');
+				.catch(function(){
+					console.log('error answering this question')
 				})
-				
 			}
 
-			function Reply(id) {
-				PostsFactory.reply({id: id, comment: vm.newComment, _owner: vm.user})
-					.then(function() {
-						console.log('success added comment')
-						//PostFactry.get)
-						console.log(id)
-					})
-					.catch(function() {
-						console.log('was not able to add post correctly')
-					})
-					getPosts()
-		
-				}
+
+	
+	
 
 				
 			
