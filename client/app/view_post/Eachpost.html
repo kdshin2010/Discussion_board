@@ -15,20 +15,11 @@
         </div>
     </header>
    <article>
-   <h3>Hello {{vm.user}}
                 <!-- Set margin left to percentage -->
     <div class='article_container' style='text-align: center;'>
+        {{vm.singlePost}}
+
         <div class='heading'>
-            <button class = 'btn btn-primary'  ng-click='vm.show_answer_form()'>Answer Question</button>
-            <div class='show_answer_form' ng-show ='vm.show_answer' ng-init= 'vm.show_answer = false'>
-                <form class='text_answer'>
-                      <label for="comment">Answer:</label>
-                      <textarea class="form-control" rows="5" id="comment" ng-model = 'vm.newAnswer.answer'></textarea>
-                      <button class='btn btn-success' id='submit_answer' ng-click='vm.Answer()'>Submit</button>
-                    </div>
-                </form> 
-            </div>
-            {{vm.newAnswer.answer}}
             <h1 class='section-heading'>Answers</h1>
             <div class='answers'>
                 <p class='the_answers'><strong>Kyle Shin</strong>: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
