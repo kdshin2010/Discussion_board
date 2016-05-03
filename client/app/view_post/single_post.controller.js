@@ -11,75 +11,61 @@
 			var vm = this;
 			//to get get view of single Post instead of list of all posts get data from post Id and name
 			//find single post
-			// var user = AuthFactory.sendUserInfo();
-			// vm.user = user.user.username
-			var user = 'Kyle';
-			vm.user = 'Kyle'
-
-
 
 			var thisPostId = $routeParams.id
 			vm.test = 'hello';
+			vm.user = AuthFactory.sendUserInfo();
 			vm.answers;
-			getPosts();
-			vm.show_answer_form = show_answer_form
+			vm.Reply = Reply
+			vm.Answer = Answer
 			vm.comments;
 			vm.replies;
 			vm.singlePost;
-			vm.Answer = Answer;
-			vm.answers
+			getSinglePost();
+			//make an $http request to get find ID and render data for the post
 
-			function getAnswers() {
-				PostsFactory.getAnswers({id: thisPostId})
-				.then(function(data) {
-					vm.answers = data;
-				})
-				.catch(function() {
-					console.log('error getting answers!')
-				})
+
+
+
+			function Answer(id , index) {
+				PostsFactory.answer({id: id, answer: vm.newAnswer[index], _owner: vm.user}) 
+					.then(function(){
+						console.log('successfully added post')
+					})
+					.catch(function() {
+						console.log('could not add post correctly');
+					})
+					vm.newAnswer = null
 			}
 
-
-			function getPosts() {
-				PostsFactory.getPosts()
-				.then(function(data) {
-					console.log(data)
-					console.log('getting POSTS')
-					vm.posts = data
-				})
-				.catch(function(){
-					console.log('in the single psot controller and could not get posts')
-				})
-			}
-
-			function getAnswers() {
-				PostsFactory.getAnswers({id: thisPostId})
-				.then(function(data) {
-					vm.answers = data;
-				})
-				.catch(function(){
-					console.log('unable to get answers for this post')
-				})
-			}
-
-			function show_answer_form() {
-				vm.show_answer = true;
-			}
-
-			function Answer() {
-				PostsFactory.Answer({id: thisPostId, answer: vm.newAnswer.answer})
+			function getSinglePost() {
+				PostsFactory.getSinglePost($routeParams.id)
 				.then(function(data) {
 					console.log(data);
-					vm.answers.push(data);
+					console.log('retrieved the single post');
+					vm.singlePost = data;
+					console.log(vm.singlePost)
+
 				})
-				.catch(function(){
-					console.log('error answering this question')
+				.catch(function(err) {
+					console.log(err)
+					console.log('unable to retrive the post');
 				})
+				
 			}
 
-
-	
-	
+			function Reply(id) {
+				PostsFactory.reply({id: id, comment: vm.newComment, _owner: vm.user})
+					.then(function() {
+						console.log('success added comment')
+						//PostFactry.get)
+						console.log(id)
+					})
+					.catch(function() {
+						console.log('was not able to add post correctly')
+					})
+		
+				}
 
 				
 			
