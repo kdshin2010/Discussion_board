@@ -12,16 +12,14 @@
             </div>
         </div>
     </header>
-    Hola {{vm.username}}
 
     <!-- Main Content -->
     <div class="container" style='width: 60%'>
         <div class="row">
 			<div class="container-fluid" id='topic_container' style='margin-top: 1%'>
-				<form class='topics'>
-					<div ng-show='vm.post_error' ng-init='vm.post_error=false'>
-						<p>User is Undefined Cannot Add Post</p>
-					</div>
+                <button class='btn btn-link' ng-click='vm.show_ques_form()'> Add A Question</button>
+				<form class='topics' ng-show='vm.ques_form' ng-init='vm.ques_form = false'>
+					
 						<h2 style='text-align: center;'>Add A New Question </h2>
 	  				<div class="form-group" style='margin-top: 5px'>
 	   					 <label>Question</label>
@@ -40,17 +38,20 @@
 	    						<option>Finance</option>
 	 						 </select>
 					</div>
-	 					 <button type="submit" ng-click='vm.addPost()' class="btn btn-primary" style='margin-top: 10px; float: right;'>Submit</button>
+	 					 <button type="submit" ng-click='vm.addPost()' class="btn btn-primary" style='margin: 10px 0% 0% 25%;'>Submit</button>
+                         <button class='btn btn-link' style='margin: 0' ng-click='vm.hide_form()'>
+                             Hide
+                         </button>
 				</form>
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-preview" ng-repeat='post in vm.posts'>
                     <a href="/#/single_post/{{post._id}}">
-                        <h2 class="post-title">
+                        <h4 class="post-title">
                         	{{post.topic}}
-                        </h2> 
-                        <h3 class="post-subtitle">
+                        </h4> 
+                        <h5 class="post-subtitle">
                         	{{post.category}}
-                        </h3>
+                        </h5>
                     </a>
                     <p class="post-meta">Posted by {{post._owner}}<a href="#/posts/{{post._id}}">{{post.owner}}</a> on September 24, 2014</p>
                 </div>

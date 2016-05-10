@@ -19,13 +19,10 @@
 				Comment: Comment
 			}
 
-			var user = AuthFactory.sendUserInfo();
 			
 
-
-			setTimeout(function(){console.log(user)}, 3000)
-
-			return service
+			return service;
+			var user = AuthFactory.getUsername()
 
 			function addPost(info) {
 				var deferred = $q.defer()
@@ -53,21 +50,16 @@
 			}
 
 			function Answer(info) {
-				if(user = undefined) {
-					alert('Can Not post, user is undefined');
-				} else {
-					console.log(info)
-					var deferred = $q.defer()
-					$http.post('/answer', {id: info.id, answer: info.answer, owner: info.owner})
-					.success(function(data) {
-						deferred.resolve(data);
-					})
-					.error(function() {
-						console.log('could not add post to data')
-						deferred.reject()
-					})
-					return deferred.promise;
-				}
+				var deferred = $q.defer()
+				$http.post('/answer', {id: info.id, answer: info.answer, owner: info.owner})
+				.success(function(data) {
+					deferred.resolve(data);
+				})
+				.error(function() {
+					console.log('could not add post to data')
+					deferred.reject()
+				})
+				return deferred.promise;
 			} 
 
 			function reply(info) {

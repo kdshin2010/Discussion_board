@@ -3,120 +3,119 @@
 		.module('app.auth')
 		.factory('AuthFactory', AuthFactoryFunction)
 	
-		AuthFactoryFunction.$inject = ['$http', '$q'];
+		AuthFactoryFunction.$inject = ['$http', '$q', '$window'];
 
-		function AuthFactoryFunction($http, $q) {
+		function AuthFactoryFunction($http, $q, $window) {
 			var service = {
+				currentUser: currentUser,
+				saveToken: saveToken,
+				getToken: getToken,
 				register: register,
-				sendUserInfo: sendUserInfo,
 				login: login,
-				checkUser: checkUser,
 				logout: logout,
-				isLoggedIn: isLoggedIn
+				isLoggedIn: isLoggedIn,
+				getProfile: getProfile,
+				getUsername: getUsername
 			}
 
-			var user; 
+			return service;	
 
 
 
-			return service;		
 
-			//Register user
-			function register(username, password, email) {
-				var deferred = $q.defer();
-				$http.post('/user/register', {username: username, password: password, email: email})
-				.success(function(data, status) {
-					if(status === 200 && data.status) {
-						deferred.resolve(data);
-					} else {
-						deferred.reject();
-					}
-				})
-				//handle error
-				.error(function(data) {
-					deferred.reject(data);
-				});
-				//return promise object
-				return deferred.promise
-			}
-
-			function login(username, password) {
-				var deferred = $q.defer();
-				$http.post('/user/login', {username: username, password: password})
-				.success(function(data, status) {
-					if(status === 200 && data.status) {
-						console.log(data);
-						user = data;
-						deferred.resolve(data);
-					} else {
-						deferred.reject();
-					}
-				})
-				//handle error
-				.error(function(data) {
-					deferred.reject(data);
-				});
-				//return promise object
-				return deferred.promise
+			function saveToken(token) {
+				$window.localStorage['mean-token'] = token;
 			}
 
 
-			function sendUserInfo() {
-				console.log(user)
-				return user
+			function getToken() {
+				return $window.localStorage['mean-token'];
+
 			}
 
-
-			function checkUser(username) {
-				console.log('checking username in the auth service')
-				console.log(username)
-				var deferred = $q.defer();
-				$http.post('/check', {username: username})
-				.success(function(data) {
-					deferred.resolve(data)
-				})
-				.error(function() {
-					deferred.reject();
-				})
-				return deferred.promise
-					
-			}	
-
-			function logout(user) {
-				var deferred = $q.defer();
-				$http.post('/logout', {username: user})
-				.success(function(data) {
-					console.log(' in the auth service and was able to log out user')
-					console.log(data)
-					deferred.resolve()
-				})
-				.error(function() {
-					deferred.reject()
-				})
-				return deferred.promise
-			} 	
-
-
-			//Clean up code -- repetetive in AuthService and navbar directive
-			
-			function isLoggedIn(user) {
-				console.log(user)
-				var deferred = $q.defer()
-				console.log('here in the auth service');
-				if (user = undefined) {
-					console.log('the user is undefined')
+			function isLoggedIn() {
+				var token = getToken();
+				var payload;
+				if(token) {
+					payload = token.split('.')[1];
+					payload = $window.atob(payload);
+					payload = JSON.parse(payload);
+					return payload.exp > Date.now() / 1000;
 				} else {
-					$http.post('/isLoggedIn', {username: user})
-					.success(function(data) {
-						console.log(data)
-						deferred.resolve(data)
-					})
-					.error(function() {
-						deferred.reject()
-					})
-					return deferred.promise
+					return false;
 				}
+				
 			}
+
+		    var currentUser = function() {
+		      if(isLoggedIn()){
+		        var token = getToken();
+		        var payload = token.split('.')[1];
+		        payload = $window.atob(payload);
+		        payload = JSON.parse(payload);
+		        console.log('line 56!!!!!!!!!!!!!!')
+		        console.log(payload.username)
+		        return {
+		          username : payload.username
+		        };
+		      }
+		    };
+
+		    function getUsername() {
+		      if(isLoggedIn()){
+		        var token = getToken();
+		        var payload = token.split('.')[1];
+		        payload = $window.atob(payload);
+		        payload = JSON.parse(payload);
+		        console.log(payload.username)
+
+		        return {
+		          username : payload.username
+		        };
+		      }
+		    };
+
+	
+
+		    function register(info) {
+		    	var deferred = $q.defer();
+		    	$http.post('/register', info)
+		    	.success(function(data){
+		    		console.log(data.token)
+		    		deferred.resolve(saveToken(data.token))
+		    	})
+		    	.error(function(){
+		    		console.log('in the service and error saving token')
+		    	})
+		    	return deferred.promise;
+
+		    }
+
+		    function login(info) {
+		    	var deferred = $q.defer();
+		    	$http.post('/login', info)
+		    	.success(function(data){
+		    		deferred.resolve(saveToken(data.token))
+		    	})
+		    	.error(function(){
+		    		console.log('in the service and error logging ing')
+		    	})
+		    	return deferred.promise;
+		    }
+
+		    function logout() {
+     			 $window.localStorage.removeItem('mean-token');
+		    }
+
+		    var getProfile = function() {
+		    	return $http.get('/api/profile', {
+		    		headers: {
+		    			Authorization: 'Bearer ' + getToken()
+		    		}
+		    	})
+		    };
+
+
 
 
 		}

@@ -7,23 +7,37 @@
 		AuthControllerFunction.$inject = ["AuthFactory", '$location'];
 
 		function AuthControllerFunction(AuthFactory, $location) {
-			var vm = this,
-			currentUser = AuthFactory.sendUserInfo()
+			var vm = this;
 
-			vm.hello = 'testing'
 			vm.register = register;
 			vm.login = login;
-			vm.userInfo
+
+			vm.userInfo = {
+				username: "",
+				password: ""
+			}
 
 			function register() {
-				// initial values
-				vm.error = false;
-				vm.disabled = true;
-				AuthFactory.register(vm.newUser.username, vm.newUser.password, vm.newUser.email)
+				console.log('registering user')
+				AuthFactory.register(vm.userInfo)
 				.then(function() {
 					console.log('successfully added username to database and im in the contorller');
 					vm.disabled = false;
-					$location.path('/login');
+					$location.path('/posts');
+				})
+				.catch(function() {
+					console.log('error adding username in the controller :/')
+				})
+				vm.newUser = {};
+			}
+
+			function login() {
+				console.log('loggin in user')
+				AuthFactory.login(vm.userInfo)
+				.then(function() {
+					console.log('successfully logged in user');
+					vm.disabled = false;
+					$location.path('/posts');
 				})
 				.catch(function() {
 					console.log('error adding username in the controller :/')
@@ -31,25 +45,11 @@
 				vm.newUser = {}
 			}
 
-			function login() {
-				vm.error = false;
-				vm.disabled = true;
-				AuthFactory.login(vm.user.username, vm.user.password)
-				.then(function(data) {
-					console.log(data);
-					vm.userInfo = data;
-					$location.path('/posts');
-					vm.disabled = false;
-					vm.user = {}
-				})
-				.catch(function() {
-					vm.error = true;
-					vm.errorMessage = 'Invalid username and/or password';
-					vm.disabled = false;
-					vm.loginForm = {};
-				})
-
-			}
+			// function logout(){
+			// 	console.log('logging out');
+			// 	AuthFactory.logout();
+			// 	$location.path('/register')
+			// }
 		}
 
 })()

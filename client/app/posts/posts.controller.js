@@ -4,19 +4,39 @@
 		.controller('PostsController', PostsControllerFunction)
 
 
-		PostsControllerFunction.$inject = ['$http', 'AuthFactory', 'PostsFactory']
+		PostsControllerFunction.$inject = ['$http', 'AuthFactory', 'PostsFactory', '$location']
 		// why doesnt post service inject properly?
-		function PostsControllerFunction($http, AuthFactory, PostsFactory){
+		function PostsControllerFunction($http, AuthFactory, PostsFactory, $location){
 			var vm = this;
-			var user = AuthFactory.sendUserInfo();
-			vm.username = user.user.username
 			vm.posts;
 			vm.post_error
 			getPosts();
 			vm.addPost = addPost
 			getPosts();
-			// AddPost 
+			vm.logout = logout
 
+			//sends as username object {username : ""}
+			var user = AuthFactory.getUsername();
+			console.log(user)
+			vm.username = user.username;
+			console.log('heyyyy why no update');
+
+			vm.show_ques_form = show_ques_form;
+			vm.hide_form = hide_form
+
+			function show_ques_form() {
+				vm.ques_form = true;
+			}
+
+			function hide_form() {
+				vm.ques_form = false;
+			}
+
+
+
+
+
+			// AddPost 
 			function addPost() {
 				console.log(vm.user)
 				PostsFactory.addPost({topic: vm.newPost.topic, description: vm.newPost.description, category: vm.newPost.category, owner: vm.username })
@@ -31,7 +51,7 @@
 				//getPosts()
 
 				vm.newPost = null;
-			}
+			};
 
 			function getPosts() {
 				PostsFactory.getPosts()
@@ -44,6 +64,12 @@
 					console.log('error')
 				})
 
+			};
+
+			function logout(){
+				console.log('logging out');
+				AuthFactory.logout();
+				$location.path('/register')
 			}
 		}
 

@@ -12,7 +12,7 @@ pass<nav class="navbar navbar-inverse navbar-fixed-top">
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#/login">Log in</a></li>
-                    <li><a href="" ng-click="vm.logout()">Log out</a></li>
+                    <li ng-show='vm.isIn'><a href="" ng-click="vm.logout()">Log out</a></li>
                 </ul>
             </div>
         </div>

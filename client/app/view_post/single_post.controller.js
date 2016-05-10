@@ -11,20 +11,27 @@
 			var vm = this;
 			//to get get view of single Post instead of list of all posts get data from post Id and name
 			//find single post
-			var user = AuthFactory.sendUserInfo();
 			console.log('IN THE SINGLE CONTROLLER ASKING FOR THE ID');
 			console.log('YO YO YO OYOY OY OYOO');
-			// user.user.username
+
 
 
 			var thisPostId = $routeParams.id
 			vm.test = 'hello';
-			vm.user = AuthFactory.sendUserInfo();
+			var user = AuthFactory.getUsername();
+
+			console.log(user)
 			vm.answers;
 			vm.Answer = Answer;
 			vm.Comment = Comment;
 			vm.comments;
+			vm.show_answer_form = show_answer_form;
+			vm.hide_answer_form = hide_answer_form;
 			vm.replies;
+			vm.show_comment_form = show_comment_form;
+			vm.hide_comment_form = hide_comment_form;
+			vm.show_comment_input = show_comment_input;
+			vm.hide_comment_input = hide_comment_input;
 			vm.singlePost;
 			vm.comments =[];
 			getSinglePost();
@@ -47,11 +54,11 @@
 				
 			}
 
-	
+			//get username here
 
 			function Answer() {
 				console.log('answering question')
-				PostsFactory.Answer({id: thisPostId, answer: vm.newAnswer.answer, owner: user.user.username })
+				PostsFactory.Answer({id: thisPostId, answer: vm.newAnswer.answer, owner: user.username })
 				.then(function(data) {
 					console.log(data);
 					getSinglePost();
@@ -63,15 +70,44 @@
 			}
 
 			function Comment(id, index) {
-				PostsFactory.Comment({id: id, comment: vm.newComment[index], owner: vm.user.user.username})
+				PostsFactory.Comment({id: id, comment: vm.newComment[index], owner: user.username})
 				.then(function(data){
 					vm.comments.push(data);
 					getSinglePost();
 				})
 				.catch(function(){
-					console.log('error')
+					console.log('error');
 				})
 				vm.newComment = null;
+			}
+
+			function show_answer_form() {
+				vm.show_answer = true;
+
+			}
+
+			function show_comment_form(index) {
+				console.log(index);
+				vm.show_comments[index] = true;
+				vm.show_button[index] = false;
+				vm.hide_button[index] = true;
+			}
+			function hide_comment_form(index) {
+				vm.show_comments[index] = false;
+				vm.show_button[index] = true;
+				vm.hide_button[index] = false;
+			}
+
+
+			function show_comment_input(index) {
+				vm.show_comments_input[index] = true;
+			}
+			function hide_comment_input(index) {
+				vm.show_comments_input[index] = false;
+			}
+
+			function hide_answer_form() {
+				vm.show_answer = false;
 			}
 	
 

@@ -8,21 +8,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Welcome *User*</a>
+                <a class="navbar-brand" href="index.html" ng-show='vm.isLoggedIn()'>Welcome {{ vm.userName().username }}*</a>
             </div>
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#/register">Log Out</a>
-                    </li>
-                    <li>
                         <a href="contact.html">Contact</a>
                     </li>
+                    <li ng-show='vm.isLoggedIn()'>
+                        <button class= 'btn btn-danger' id ='logout_button' ng-click='vm.logout()'>Logout</button>
+                    </li>
+                    
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
     </nav>
