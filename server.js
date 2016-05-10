@@ -16,6 +16,9 @@ var User = require('./server/Models/User.js')
 var mongooseConfig = require('./server/Config/mongoose.js');
 require('./server/Config/passport.js');
 
+
+
+var port = process.env.PORT || 80;
 var routes = require('./server/Config/routes.js')
 
 //invoke express, require mongoose.js, require routes
@@ -62,6 +65,4 @@ app.use(function(err, req, res) {
 var debug = require('debug')('passport-mongo');
 
 
-app.listen('8880', function(){
-	console.log('8880')
-})
+app.listen(port);
