@@ -1,0 +1,27 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "QQ client",
+  "repository": {
+    "type": "git"
+  },
+  "keywords": [
+    "QQ",
+    "node",
+    "angular"
+  ],
+  "author": "Kyle Shin",
+  "license": "MIT",
+  "homepage": "https://github.com/kdshin2010/discussion_board",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-concurrent": "^1.0.0",
+    "grunt-contrib-cssmin": "^0.12.2",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-less": "^1.0.1",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-nodemon": "^0.4.0",
+    "jshint-stylish": "^1.0.2"
+  }
+}
