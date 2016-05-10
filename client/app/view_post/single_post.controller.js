@@ -100,6 +100,7 @@
 
 
 			function show_comment_input(index) {
+				console.log('hererere')
 				vm.show_comments_input[index] = true;
 			}
 			function hide_comment_input(index) {

@@ -37,14 +37,14 @@
                         <button class='glyphicon glyphicon-menu-down'gtg ng-click='vm.show_comment_input($index)'>Reply</button>
                         <button class='glyphicon glyphicon-menu-down' ng-click='vm.show_comment_form($index)' ng-show='vm.show_button[$index]' ng-init='vm.show_button[$index] = true'>Show</button>
                         <button class='glyphicon glyphicon-menu-up' ng-click='vm.hide_comment_form($index)' ng-show='vm.hide_button[$index]' ng-init='vm.hide_button[$index] = false'>Hide</button>
-                    <div id = "reply" ng-show='vm.show_comments[$index]' ng-init='vm.show_comments[$index] = false'> 
-                        <form class="form-inline" ng-show='vm.show_comments_input[$index]' ng-init='vm.show_comments_input[$index] = false'>
+                    <form class="form-inline" ng-show='vm.show_comments_input[$index]' ng-init='vm.show_comments_input[$index] = false'>
                               <div class="form-group" id='comment_input'>
                                 <input type="text" class="form-control" ng-model='vm.newComment[$index]'>
                               </div>
                               <button class="btn btn-default" id = 'comment_button' ng-click='vm.Comment(answer._id, $index)'>Comment</button>
                               <button class='btn btn-link' id='hide_comment_input' ng-click='vm.hide_comment_input($index)'>Hide</button>
                             </form>
+                    <div id = "reply" ng-show='vm.show_comments[$index]' ng-init='vm.show_comments[$index] = false'> 
                         <div class='show_comments' ng-repeat = 'comment in answer.comments track by $index'>
                             <ul>
                                 <li class='comment_list'><strong>{{comment._owner}}: </strong>{{comment.comment}}</li>

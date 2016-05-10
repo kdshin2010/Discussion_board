@@ -61,7 +61,7 @@
 
 #comment_button{
 	position: relative;
-	right: 23%;
+	right: 5%;
 	height: 3%;
 	font-size: .4em;
 	padding-top: 10px;
@@ -79,7 +79,7 @@
 }
 #comment_input {
 	position: relative;
-	left: 5%;
+	left: 9%;
 }
 
 /* BUTTONS */
@@ -102,7 +102,7 @@
 #hide_comment_input {
 	margin: 0;
 	position: relative;
-	right: 24%;
+	right: 6.5%;
 }
 
 .glyphicon {
