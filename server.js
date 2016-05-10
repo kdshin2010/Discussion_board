@@ -18,7 +18,7 @@ require('./server/Config/passport.js');
 
 
 
-var port = process.env.PORT || 80;
+var port = process.env.PORT || 8000;
 var routes = require('./server/Config/routes.js')
 
 //invoke express, require mongoose.js, require routes
